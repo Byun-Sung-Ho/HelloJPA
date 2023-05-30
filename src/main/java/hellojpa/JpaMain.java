@@ -17,17 +17,31 @@ public class JpaMain {
         transaction.begin();
 
         try {
-            //insert into
-            Member member = new Member();
-            member.setId(1L);
-            member.setName("HelloA");
-            //update
-//            Member mem2 = entityManager.find(Member.class, 2L);
-//            mem2.setName("HelloJPA");
-            entityManager.persist(member);
+//            //비영속
+//            //insert into
+//            Member member = new Member();
+//            member.setId(100L);
+//            member.setName("HelloJPA2");
+//            //update
+////            Member mem2 = entityManager.find(Member.class, 2L);
+////            mem2.setName("HelloJPA");
+//            //영속
+//            entityManager.persist(member);
+//
+//            //select *
+////            List<Member> resultList = entityManager.createQuery("select m from Member as m", Member.class).getResultList();
+//            Member member1 = entityManager.find(Member.class, 1L);
+//            System.out.println("member1 = " + member1);
 
-            //select *
-//            List<Member> resultList = entityManager.createQuery("select m from Member as m", Member.class).getResultList();
+            //========================================================
+            //영속성 컨텍스트 트랙잭션 동작
+            Member member1 = new Member(150L, "A");
+            Member member2 = new Member(151L, "B");
+
+            entityManager.persist(member1);
+            entityManager.persist(member2);
+            System.out.println("==========================");
+
             transaction.commit();
         }catch (Exception e){
             transaction.rollback();
